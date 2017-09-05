@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iOSDialogDemo.iml" filepath="$PROJECT_DIR$/iOSDialogDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iosdialog/iosdialog.iml" filepath="$PROJECT_DIR$/iosdialog/iosdialog.iml" />
+    </modules>
+  </component>
+</project>
