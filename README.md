@@ -37,5 +37,5 @@ And add this where you want:
 	
 	
 If you liked this library, add a star to this project and feel free to make a <b>fork!</b><br>
-And of course, Every donation is well accepted :D
+And of course, every donation is well accepted :D
 <a href="http://paypal.me/gdacciaro"><img src="https://www.paypalobjects.com/webstatic/paypalme/images/social/pplogo384.png" width=64></a>
