@@ -76,6 +76,14 @@ public class iOSDialog {
             dialogButtonOk.setTypeface(null, Typeface.NORMAL);
     }
 
+    public void setTipefaces(Typeface appleFont){
+        title_lbl.setTypeface(appleFont);
+        subtitle_lbl.setTypeface(appleFont);
+        dialogButtonOk.setTypeface(appleFont);
+        dialogButtonNo.setTypeface(appleFont);
+    }
+
+
     private void initViews() {
         title_lbl = (TextView) dialog.findViewById(R.id.title);
         subtitle_lbl = (TextView) dialog.findViewById(R.id.subtitle);
@@ -84,10 +92,12 @@ public class iOSDialog {
         separator = (View) dialog.findViewById(R.id.separator);
     }
 
+
+
 }
 
 /*
- *  Made with love (and coffee) in Naples, Italy!
+ *  Made with love (and coffee and pizza) in Naples, Italy!
  *
  *  __
  * // ""--.._
