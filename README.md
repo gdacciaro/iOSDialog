@@ -39,8 +39,8 @@ And add this where you want:
 If you liked this library, add a star to this project and feel free to make a <b>fork!</b><br>
 And of course, every donation is well accepted :D
 <a href="http://paypal.me/gdacciaro"><img src="https://www.paypalobjects.com/webstatic/paypalme/images/social/pplogo384.png" width=64></a>
-
-
+<br><br>
+<hr>
 A special thanks to Rofiq Setiawan who made a porting of iOSDialog for Xamarin.
 Check it out here: <a href="https://github.com/rofiqsetiawan/iOSDialog">https://github.com/rofiqsetiawan/iOSDialog</a>
 
