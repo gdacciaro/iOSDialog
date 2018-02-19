@@ -21,26 +21,37 @@ public class iOSDialog {
     private TextView dialogButtonOk ,dialogButtonNo;
     private TextView title_lbl, subtitle_lbl;
     private View separator;
+    private iOSDialogClickListener listener;
     private boolean negativeExist = false;
+    private static final String LOG_ERROR = "iOSDialog_ERROR";
 
-    public iOSDialog(Context context) {
+    public iOSDialog(Context context, String title, String subtitle, boolean bold, Typeface typeFace, iOSDialogClickListener listener) {
+
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.alerts_two_buttons);
         if(dialog.getWindow()!=null)
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         initViews();
+        setTitle(title);
+        setSubtitle(subtitle);
+        setBoldPositiveLabel(bold);
+        setTypefaces(typeFace);
+
+        //dialogButtonOk.setOnClickListener(listener);
     }
 
 
-    public void setPositiveListener(View.OnClickListener okListener){
-        dialogButtonOk.setOnClickListener(okListener);
+    public void setPositiveListener(String positiveLabel, View.OnClickListener ok) {
+        dialogButtonOk.setOnClickListener(ok);
+        setPositiveLabel(positiveLabel);
     }
-    public void setNegativeListener(View.OnClickListener okListener){
-        if(!negativeExist){
-            Log.e("iOSDialog","!!! Negative button isn't visible, set it with setNegativeLabel()!!!");
-        }
-        dialogButtonNo.setOnClickListener(okListener);
+    public void setNegativeListener(String negativeLabel, View.OnClickListener ko) {
+        if(!negativeExist)
+            Log.e(LOG_ERROR,"!!! Negative button isn't visible, set it with setNegativeLabel()!!!");
+        dialogButtonNo.setOnClickListener(ko);
+        setNegativeLabel(negativeLabel);
+
     }
 
     public void show(){
@@ -54,14 +65,12 @@ public class iOSDialog {
     public void dismiss(){
         dialog.dismiss();
     }
-
     public void setTitle(String title){
         title_lbl.setText(title);
     }
     public void setSubtitle(String subtitle){
         subtitle_lbl.setText(subtitle);
     }
-
     public void setPositiveLabel(String positive){
         dialogButtonOk.setText(positive);
     }
@@ -75,12 +84,13 @@ public class iOSDialog {
         else
             dialogButtonOk.setTypeface(null, Typeface.NORMAL);
     }
-
-    public void setTipefaces(Typeface appleFont){
-        title_lbl.setTypeface(appleFont);
-        subtitle_lbl.setTypeface(appleFont);
-        dialogButtonOk.setTypeface(appleFont);
-        dialogButtonNo.setTypeface(appleFont);
+    public void setTypefaces(Typeface appleFont){
+        if(appleFont!=null) {
+            title_lbl.setTypeface(appleFont);
+            subtitle_lbl.setTypeface(appleFont);
+            dialogButtonOk.setTypeface(appleFont);
+            dialogButtonNo.setTypeface(appleFont);
+        }
     }
 
 

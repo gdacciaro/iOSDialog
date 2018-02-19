@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">iOSDialog Demo</string>
+    <string name="example_title">Allow \"Calendar\" to access your location while you use the app?</string>
+    <string name="example_subtitle">Your location is used to estimate travel times to events and improve location searches</string>
+    <string name="ok">Ok</string>
+    <string name="dismiss">Dismiss</string>
 </resources>
