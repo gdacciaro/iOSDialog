@@ -21,11 +21,12 @@ public class iOSDialog {
     private TextView dialogButtonOk ,dialogButtonNo;
     private TextView title_lbl, subtitle_lbl;
     private View separator;
-    private iOSDialogClickListener listener;
+    private iOSDialogClickListener positiveListener;
+    private iOSDialogClickListener negativeListener;
     private boolean negativeExist = false;
     private static final String LOG_ERROR = "iOSDialog_ERROR";
 
-    public iOSDialog(Context context, String title, String subtitle, boolean bold, Typeface typeFace, iOSDialogClickListener listener) {
+    public iOSDialog(Context context, String title, String subtitle, boolean bold, Typeface typeFace) {
 
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.alerts_two_buttons);
@@ -33,25 +34,25 @@ public class iOSDialog {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         initViews();
+
         setTitle(title);
         setSubtitle(subtitle);
         setBoldPositiveLabel(bold);
         setTypefaces(typeFace);
 
-        //dialogButtonOk.setOnClickListener(listener);
+        initEvents();
     }
 
-
-    public void setPositiveListener(String positiveLabel, View.OnClickListener ok) {
-        dialogButtonOk.setOnClickListener(ok);
-        setPositiveLabel(positiveLabel);
+    public void setPositiveListener(iOSDialogClickListener listener) {
+        this.positiveListener = listener;
+        this.dismiss();
     }
-    public void setNegativeListener(String negativeLabel, View.OnClickListener ko) {
+
+    public void setNegativeListener(iOSDialogClickListener listener) throws Exception {
         if(!negativeExist)
-            Log.e(LOG_ERROR,"!!! Negative button isn't visible, set it with setNegativeLabel()!!!");
-        dialogButtonNo.setOnClickListener(ko);
-        setNegativeLabel(negativeLabel);
-
+            throw new Exception("Negative button isn't visible, set it with setNegativeLabel()");
+        this.negativeListener = listener;
+        this.dismiss();
     }
 
     public void show(){
@@ -102,6 +103,26 @@ public class iOSDialog {
         separator = (View) dialog.findViewById(R.id.separator);
     }
 
+    private void initEvents(){
+
+        dialogButtonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (positiveListener != null) {
+                    positiveListener.onClick(iOSDialog.this);
+                }
+            }
+        });
+
+        dialogButtonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (negativeListener != null) {
+                    negativeListener.onClick(iOSDialog.this);
+                }
+            }
+        });
+    }
 
 
 }

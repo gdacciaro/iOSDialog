@@ -14,7 +14,8 @@ public class iOSDialogBuilder {
     private boolean bold;
     private String title, subtitle;
     private Context context;
-    private iOSDialogClickListener listener;
+    private iOSDialogClickListener positiveListener;
+    private iOSDialogClickListener negativeListener;
 
     public iOSDialogBuilder(Context context) {
         this.context = context;
@@ -40,16 +41,21 @@ public class iOSDialogBuilder {
         return this;
     }
 
-    public iOSDialogBuilder setOKClick(iOSDialogClickListener listener) {
-        this.listener=listener;
+    public iOSDialogBuilder setNegativeListener(iOSDialogClickListener listener) {
+        this.negativeListener=listener;
         return this;
     }
 
-
-    public iOSDialog build() {
-        return new iOSDialog(context,title,subtitle, bold, tf,listener);
+    public iOSDialogBuilder setPositiveListener(iOSDialogClickListener listener) {
+        this.positiveListener = listener;
+        return this;
     }
 
-
+    public iOSDialog build() throws Exception {
+        iOSDialog dialog = new iOSDialog(context,title,subtitle, bold, tf);
+        dialog.setNegativeListener(negativeListener);
+        dialog.setPositiveListener(positiveListener);
+        return dialog;
+    }
 
 }
