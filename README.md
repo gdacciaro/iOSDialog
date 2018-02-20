@@ -10,7 +10,7 @@ With this library you can use iOS UIAlertView on Android.<br>
 <br>
 To install the library just add this line to your gradle:
 	
-	compile 'com.gdacciaro:iosdialog:1.0.2'
+	compile 'com.gdacciaro:iosdialog:1.0.3'
 	
 And add this where you want:
 
@@ -37,10 +37,10 @@ And add this where you want:
 	
 	
 If you liked this library, add a star to this project and feel free to make a <b>fork!</b><br>
-And of course, every donation is well accepted :D
-<a href="http://paypal.me/gdacciaro"><img src="https://www.paypalobjects.com/webstatic/paypalme/images/social/pplogo384.png" width=64></a>
 <br><br>
 <hr>
 A special thanks to Rofiq Setiawan who made a porting of iOSDialog for Xamarin.
 Check it out here: <a href="https://github.com/rofiqsetiawan/iOSDialog">https://github.com/rofiqsetiawan/iOSDialog</a>
+Another special thanks to Francesco Borrelli who helped me with the implementation of the iOSDialogClickListener
+Here is his Linkedin profile <a href="https://github.com/rofiqsetiawan/iOSDialog">https://www.linkedin.com/in/francesco-borrelli1/</a>
 
