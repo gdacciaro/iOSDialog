@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/iOSDialog.iml" filepath="$PROJECT_DIR$/iOSDialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/iOSDialogDemo.iml" filepath="$PROJECT_DIR$/iOSDialogDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iosdialog/iosdialog.iml" filepath="$PROJECT_DIR$/iosdialog/iosdialog.iml" />
       <module fileurl="file://$PROJECT_DIR$/iosdialog/iosdialog.iml" filepath="$PROJECT_DIR$/iosdialog/iosdialog.iml" />
     </modules>
   </component>

@@ -11,8 +11,8 @@ import android.graphics.Typeface;
 
 public class iOSDialogBuilder {
     private Typeface tf;
-    private boolean bold;
-    private String title, subtitle;
+    private boolean bold,cancelable;
+    private String title, subtitle, okLabel, koLabel;
     private Context context;
     private iOSDialogClickListener positiveListener;
     private iOSDialogClickListener negativeListener;
@@ -40,21 +40,27 @@ public class iOSDialogBuilder {
         this.tf=font;
         return this;
     }
+    public iOSDialogBuilder setCancelable(boolean cancelable){
+        this.cancelable=cancelable;
+        return this;
+    }
 
-    public iOSDialogBuilder setNegativeListener(iOSDialogClickListener listener) {
+    public iOSDialogBuilder setNegativeListener(String koLabel,iOSDialogClickListener listener) {
         this.negativeListener=listener;
+        this.koLabel=koLabel;
         return this;
     }
 
-    public iOSDialogBuilder setPositiveListener(iOSDialogClickListener listener) {
+    public iOSDialogBuilder setPositiveListener(String okLabel,iOSDialogClickListener listener) {
         this.positiveListener = listener;
+        this.okLabel=okLabel;
         return this;
     }
 
-    public iOSDialog build() throws Exception {
-        iOSDialog dialog = new iOSDialog(context,title,subtitle, bold, tf);
-        dialog.setNegativeListener(negativeListener);
-        dialog.setPositiveListener(positiveListener);
+    public iOSDialog build(){
+        iOSDialog dialog = new iOSDialog(context,title,subtitle, bold, tf,cancelable);
+        dialog.setNegative(koLabel,negativeListener);
+        dialog.setPositive(okLabel,positiveListener);
         return dialog;
     }
 

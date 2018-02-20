@@ -23,11 +23,11 @@ public class iOSDialog {
     private View separator;
     private iOSDialogClickListener positiveListener;
     private iOSDialogClickListener negativeListener;
-    private boolean negativeExist = false;
+    private boolean negativeExist;
     private static final String LOG_ERROR = "iOSDialog_ERROR";
 
-    public iOSDialog(Context context, String title, String subtitle, boolean bold, Typeface typeFace) {
-
+    public iOSDialog(Context context, String title, String subtitle, boolean bold, Typeface typeFace,boolean cancelable) {
+        negativeExist=false;
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.alerts_two_buttons);
         if(dialog.getWindow()!=null)
@@ -35,6 +35,7 @@ public class iOSDialog {
 
         initViews();
 
+        dialog.setCancelable(cancelable);
         setTitle(title);
         setSubtitle(subtitle);
         setBoldPositiveLabel(bold);
@@ -43,18 +44,19 @@ public class iOSDialog {
         initEvents();
     }
 
-    public void setPositiveListener(iOSDialogClickListener listener) {
+    public void setPositive(String okLabel, iOSDialogClickListener listener) {
         this.positiveListener = listener;
         this.dismiss();
+        setPositiveLabel(okLabel);
     }
-
-    public void setNegativeListener(iOSDialogClickListener listener) throws Exception {
-        if(!negativeExist)
-            throw new Exception("Negative button isn't visible, set it with setNegativeLabel()");
-        this.negativeListener = listener;
-        this.dismiss();
+    public void setNegative(String koLabel, iOSDialogClickListener listener) {
+        if (listener != null){
+            this.negativeListener = listener;
+            this.dismiss();
+            negativeExist = true;
+            setNegativeLabel(koLabel);
+        }
     }
-
     public void show(){
         if(!negativeExist){
             dialogButtonNo.setVisibility(View.GONE);
@@ -62,7 +64,6 @@ public class iOSDialog {
         }
         dialog.show();
     }
-
     public void dismiss(){
         dialog.dismiss();
     }
@@ -72,20 +73,19 @@ public class iOSDialog {
     public void setSubtitle(String subtitle){
         subtitle_lbl.setText(subtitle);
     }
-    public void setPositiveLabel(String positive){
+    private void setPositiveLabel(String positive){
         dialogButtonOk.setText(positive);
     }
-    public void setNegativeLabel(String negative){
-        negativeExist=true;
+    private void setNegativeLabel(String negative){
         dialogButtonNo.setText(negative);
     }
-    public void setBoldPositiveLabel(boolean bold){
+    private void setBoldPositiveLabel(boolean bold){
         if(bold)
             dialogButtonOk.setTypeface(null, Typeface.BOLD);
         else
             dialogButtonOk.setTypeface(null, Typeface.NORMAL);
     }
-    public void setTypefaces(Typeface appleFont){
+    private void setTypefaces(Typeface appleFont){
         if(appleFont!=null) {
             title_lbl.setTypeface(appleFont);
             subtitle_lbl.setTypeface(appleFont);
@@ -96,15 +96,14 @@ public class iOSDialog {
 
 
     private void initViews() {
-        title_lbl = (TextView) dialog.findViewById(R.id.title);
-        subtitle_lbl = (TextView) dialog.findViewById(R.id.subtitle);
-        dialogButtonOk = (TextView) dialog.findViewById(R.id.dialogButtonOK);
-        dialogButtonNo = (TextView) dialog.findViewById(R.id.dialogButtonNO);
-        separator = (View) dialog.findViewById(R.id.separator);
+        title_lbl = dialog.findViewById(R.id.title);
+        subtitle_lbl =  dialog.findViewById(R.id.subtitle);
+        dialogButtonOk =  dialog.findViewById(R.id.dialogButtonOK);
+        dialogButtonNo =  dialog.findViewById(R.id.dialogButtonNO);
+        separator =  dialog.findViewById(R.id.separator);
     }
 
     private void initEvents(){
-
         dialogButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,7 +112,6 @@ public class iOSDialog {
                 }
             }
         });
-
         dialogButtonNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
