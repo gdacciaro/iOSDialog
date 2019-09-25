@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
                 .setSubtitle(getString(R.string.example_subtitle))
                 .setBoldPositiveLabel(true)
                 .setCancelable(false)
-                .setPositiveListener(getString(R.string.ok),new iOSDialogClickListener() {
+                .setPositiveListener(android.R.string.ok,new iOSDialogClickListener() {
                     @Override
                     public void onClick(iOSDialog dialog) {
                         Toast.makeText(MainActivity.this,"Clicked!",Toast.LENGTH_LONG).show();
