@@ -1,4 +1,5 @@
 package com.gdacciaro.iOSDialog;
+
 import android.content.Context;
 import android.graphics.Typeface;
 
@@ -11,7 +12,7 @@ import android.graphics.Typeface;
 
 public class iOSDialogBuilder {
     private Typeface tf;
-    private boolean bold,cancelable;
+    private boolean bold, cancelable;
     private String title, subtitle, okLabel, koLabel;
     private Context context;
     private iOSDialogClickListener positiveListener;
@@ -26,8 +27,18 @@ public class iOSDialogBuilder {
         return this;
     }
 
+    public iOSDialogBuilder setTitle(int title) {
+        this.title = context.getString(title);
+        return this;
+    }
+
     public iOSDialogBuilder setSubtitle(String subtitle) {
         this.subtitle = subtitle;
+        return this;
+    }
+
+    public iOSDialogBuilder setSubtitle(int subtitle) {
+        this.subtitle = context.getString(subtitle);
         return this;
     }
 
@@ -37,30 +48,43 @@ public class iOSDialogBuilder {
     }
 
     public iOSDialogBuilder setFont(Typeface font) {
-        this.tf=font;
-        return this;
-    }
-    public iOSDialogBuilder setCancelable(boolean cancelable){
-        this.cancelable=cancelable;
+        this.tf = font;
         return this;
     }
 
-    public iOSDialogBuilder setNegativeListener(String koLabel,iOSDialogClickListener listener) {
-        this.negativeListener=listener;
-        this.koLabel=koLabel;
+    public iOSDialogBuilder setCancelable(boolean cancelable) {
+        this.cancelable = cancelable;
         return this;
     }
 
-    public iOSDialogBuilder setPositiveListener(String okLabel,iOSDialogClickListener listener) {
+    public iOSDialogBuilder setNegativeListener(String koLabel, iOSDialogClickListener listener) {
+        this.negativeListener = listener;
+        this.koLabel = koLabel;
+        return this;
+    }
+
+    public iOSDialogBuilder setPositiveListener(String okLabel, iOSDialogClickListener listener) {
         this.positiveListener = listener;
-        this.okLabel=okLabel;
+        this.okLabel = okLabel;
         return this;
     }
 
-    public iOSDialog build(){
-        iOSDialog dialog = new iOSDialog(context,title,subtitle, bold, tf,cancelable);
-        dialog.setNegative(koLabel,negativeListener);
-        dialog.setPositive(okLabel,positiveListener);
+    public iOSDialogBuilder setNegativeListener(int koLabel, iOSDialogClickListener listener) {
+        this.negativeListener = listener;
+        this.koLabel = context.getString(koLabel);
+        return this;
+    }
+
+    public iOSDialogBuilder setPositiveListener(int okLabel, iOSDialogClickListener listener) {
+        this.positiveListener = listener;
+        this.okLabel = context.getString(okLabel);
+        return this;
+    }
+
+    public iOSDialog build() {
+        iOSDialog dialog = new iOSDialog(context, title, subtitle, bold, tf, cancelable);
+        dialog.setNegative(koLabel, negativeListener);
+        dialog.setPositive(okLabel, positiveListener);
         return dialog;
     }
 
